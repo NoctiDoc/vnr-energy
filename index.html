@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VNR ENERGY | Boissons Énergisantes Intenses</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%2339FF14%22>V</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%2339FF14%22>⚡</text></svg>">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap');
@@ -31,26 +31,26 @@
         }
 
         /* TOP BAR & HEADER */
-        .top-bar { background: var(--neon-green); color: var(--bg-dark); text-align: center; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; z-index: 1001; position: relative; }
-        header { position: sticky; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .top-bar { background: var(--neon-green); color: var(--bg-dark); text-align: center; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        header { position: sticky; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); z-index: 1000; }
         .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: var(--text-light); text-shadow: 0 0 10px var(--neon-green); letter-spacing: -2px; text-decoration: none; }
         nav ul { display: flex; list-style: none; gap: 2rem; }
         nav a { color: var(--text-light); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; transition: color 0.3s; }
         nav a:hover { color: var(--neon-green); }
         
         /* HEADER CART BUTTON */
-        .cart-btn { background: transparent; border: 1px solid var(--neon-green); color: var(--text-light); padding: 0.5rem 1rem; font-weight: 900; font-style: italic; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; }
+        .cart-btn { background: transparent; border: 1px solid var(--neon-green); color: var(--text-light); padding: 0.5rem 1rem; font-weight: 900; font-style: italic; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
         .cart-btn:hover { background: var(--neon-green); color: var(--bg-dark); }
         .cart-count { background: var(--neon-red); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-style: normal; }
 
         /* CART DRAWER */
-        .cart-drawer { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh; background-color: #0d0d0d; border-left: 1px solid var(--border); z-index: 2000; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); padding: 2rem; display: flex; flex-direction: column; }
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh; background-color: #0d0d0d; border-left: 1px solid var(--border); z-index: 2000; transition: right 0.3s; overflow-y: auto; display: flex; flex-direction: column; padding: 1.5rem; }
         .cart-drawer.open { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
         .close-cart { background: none; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; }
         .cart-items { flex-grow: 1; margin: 2rem 0; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #1a1a1a; }
-        .checkout-btn { width: 100%; padding: 1rem; background: var(--neon-green); border: none; color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; }
+        .checkout-btn { width: 100%; padding: 1rem; background: var(--neon-green); border: none; color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; cursor: pointer; }
 
         /* MODALS (Légal, CGV, etc.) */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
@@ -62,20 +62,20 @@
         .modal-content p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.6; }
 
         /* HERO & BUTTONS */
-        .hero { height: 85vh; display: flex; align-items: center; padding: 0 5%; background-image: linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.6) 50%, rgba(5,5,5,0.2) 100%), url('watermarked_img_2345650624342797978.jpg'); background-size: cover; background-position: center; }
+        .hero { height: 85vh; display: flex; align-items: center; padding: 0 5%; background-image: linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.6) 50%, rgba(5,5,5,0.2) 100%), url('watermarked_img_2345650624342797978.JPG'); background-size: cover; background-position: right; }
         .hero-content { max-width: 650px; }
-        .warning-tag { display: inline-block; background: rgba(255, 0, 60, 0.15); border: 1px solid var(--neon-red); color: var(--neon-red); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .warning-tag { display: inline-block; background: rgba(255, 0, 60, 0.15); border: 1px solid var(--neon-red); color: var(--neon-red); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; }
         .hero h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; font-style: italic; line-height: 0.95; margin-bottom: 1.5rem; text-transform: uppercase; }
         .hero h1 span { color: var(--neon-green); text-shadow: 0 0 20px rgba(57, 255, 20, 0.5); }
         .hero p { font-size: 1.1rem; margin-bottom: 2rem; color: #ccc; }
         
-        .btn { display: inline-block; padding: 1rem 2.5rem; background-color: var(--neon-green); color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; text-decoration: none; font-size: 1.1rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; background-color: var(--neon-green); color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s; border-radius: 4px; }
         .btn:hover { transform: scale(1.03) skewX(-3deg); box-shadow: 0 0 25px var(--neon-green); }
         .btn-red { background-color: var(--neon-red); color: white; }
         .btn-red:hover { box-shadow: 0 0 25px var(--neon-red); }
 
         /* REASSURANCE */
-        .reassurance-bar { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 5%; text-align: center; }
+        .reassurance-bar { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2rem 5%; }
         .reassurance-item { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .reassurance-item span { color: var(--text-light); display: block; margin-bottom: 0.2rem; }
 
@@ -96,7 +96,7 @@
         .purchase-options { background: #080808; border: 1px solid #1f1f1f; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; }
         .option-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; }
         .pack-buttons { display: flex; gap: 0.5rem; }
-        .pack-btn { flex: 1; padding: 0.5rem; background: #151515; border: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .pack-btn { flex: 1; padding: 0.5rem; background: #151515; border: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
         .pack-btn.active { background: var(--text-light); color: var(--bg-dark); border-color: var(--text-light); }
         .sub-toggle { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; margin-top: 0.8rem; }
         .sub-toggle input { accent-color: var(--neon-green); cursor: pointer;}
@@ -121,7 +121,7 @@
         .about { padding: 6rem 10%; background: var(--bg-dark); }
         .about-container { max-width: 900px; margin: 0 auto; text-align: center; }
         .creators-box { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 3rem; margin-top: 2rem; }
-        .creators-names { font-size: 1.8rem; font-weight: 900; font-style: italic; color: var(--text-light); text-transform: uppercase; border-bottom: 2px solid var(--neon-green); padding-bottom: 0.5rem; display: inline-block; margin-bottom: 1.5rem; }
+        .creators-names { font-size: 1.8rem; font-weight: 900; font-style: italic; color: var(--text-light); text-transform: uppercase; border-bottom: 2px solid var(--neon-green); padding-bottom: 1rem; }
         .creators-desc { font-size: 1rem; color: #bbb; line-height: 1.8; text-align: justify; }
 
         .newsletter { padding: 4rem 5%; background: linear-gradient(180deg, #0d0d0d 0%, #050505 100%); border-top: 1px solid var(--border); text-align: center; }
@@ -219,7 +219,7 @@
             <!-- PRODUIT 1 : TOXIC -->
             <div class="card toxic" id="product-toxic">
                 <div>
-                    <img src="watermarked_img_3639316329615626104.jpg" alt="VNR Toxic">
+                    <img src="watermarked_img_3639316329615626104.JPG" alt="VNR Toxic">
                     <h3>VNR TOXIC</h3>
                     <p class="card-desc">Citron Vert Acidulé • Taurine • Guarana • Vitamines B3/B6/B12. La claque d'énergie instantanée pour les sessions intenses.</p>
                     
@@ -250,7 +250,7 @@
             <!-- PRODUIT 2 : BLOODLINE -->
             <div class="card blood" id="product-blood">
                 <div>
-                    <img src="watermarked_img_136497952852721932.jpg" alt="VNR Bloodline">
+                    <img src="watermarked_img_136497952852721932.JPG" alt="VNR Bloodline">
                     <h3>VNR BLOODLINE</h3>
                     <p class="card-desc">Cerise Noire • Piment doux • Caféine Pure. Développé pour la concentration maximale et le maintien de la vigilance prolongée.</p>
                     
@@ -314,7 +314,7 @@
                 <div class="creators-names">Alexandre Faby & Romain Legarff</div>
                 <div class="creators-desc">
                     <p>Derrière VNR, il y a une ambition simple : créer une marque de boisson énergisante qui nous ressemble, authentique et sans détour.</p><br>
-                    <p>Amis et passionnés de projets ambitieux, nous avons décidé d'associer nos compétences pour concevoir un univers fort et marquant. De la réflexion initiale à l'élaboration de la gamme, nous avons imaginé VNR comme une marque dynamique, moderne et tournée vers le dépassement de soi. Notre objectif est de proposer un produit de caractère, pensé pour accompagner au quotidien ceux qui ne s'arrêtent jamais.</p>
+                    <p>Amis et passionnés de projets ambitieux, nous avons décidé d'associer nos compétences pour concevoir un univers fort et marquant. De la réflexion initiale à l'élaboration du design, en passant par la formulation et le branding, chaque détail a été pensé. VNR, c'est l'essence même de nos valeurs : audace, qualité et intensité.</p>
                 </div>
             </div>
         </div>
@@ -332,7 +332,7 @@
 
     <footer>
         <div class="legal-warning">
-            <strong>⚠️ AVERTISSEMENT SANITAIRE :</strong> Teneur élevée en caféine (32 mg / 100 ml). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine. À consommer avec modération dans le cadre d'une alimentation variée et équilibrée.
+            <strong>⚠️ AVERTISSEMENT SANITAIRE :</strong> Teneur élevée en caféine (32 mg / 100 ml). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine. Consommer avec modération. À conserver à température ambiante.
         </div>
 
         <div class="footer-grid">
@@ -375,13 +375,13 @@
         <h3>Conditions Générales de Vente (CGV)</h3>
         <p><strong>Article 1 - Objet :</strong> Les présentes CGV régissent les ventes par la société VNR ENERGY SAS de boissons énergisantes via le site web vnr-energy.fr.</p>
         <p><strong>Article 2 - Prix :</strong> Les prix de nos produits sont indiqués en euros toutes taxes comprises (TVA et autres taxes applicables au jour de la commande), sauf indication contraire.</p>
-        <p><strong>Article 3 - Commandes & Abonnement :</strong> Toute commande vaut acceptation des prix et descriptions. L'option "Abonnement" engage le client sur des prélèvements mensuels avec une réduction de 15%. Cet abonnement est résiliable à tout moment depuis l'espace client.</p>
-        <p><strong>Article 4 - Rétractation :</strong> Conformément à la législation sur les denrées alimentaires périssables, le droit de rétractation ne s'applique pas aux canettes descellées.</p>
+        <p><strong>Article 3 - Commandes & Abonnement :</strong> Toute commande vaut acceptation des prix et descriptions. L'option "Abonnement" engage le client sur des prélèvements mensuels automatiques jusqu'à résiliation.</p>
+        <p><strong>Article 4 - Rétractation :</strong> Conformément à la législation sur les denrées alimentaires périssables, le droit de rétractation ne s'applique pas aux canettes désellées ou consommées.</p>
     </script>
     <script id="text-privacy" type="text/template">
         <h3>Politique de Confidentialité</h3>
         <p><strong>Collecte des données :</strong> Nous collectons les informations nécessaires à l'expédition de vos commandes (Nom, Prénom, Adresse, Email).</p>
-        <p><strong>Utilisation :</strong> Vos données ne sont en aucun cas revendues à des tiers. Elles servent uniquement à la logistique, au service client et à l'envoi de la newsletter (si vous y êtes inscrit).</p>
+        <p><strong>Utilisation :</strong> Vos données ne sont en aucun cas revendues à des tiers. Elles servent uniquement à la logistique, au service client et à l'envoi de la newsletter (si consentement).</p>
         <p><strong>Vos droits :</strong> Conformément au RGPD, vous disposez d'un droit d'accès, de modification et de suppression de vos données en contactant privacy@vnr-energy.fr.</p>
     </script>
     <script id="text-mentions" type="text/template">
@@ -392,14 +392,14 @@
         <p>SIREN : 987 654 321 - RCS Caen</p>
         <p>Directeur de la publication : Alexandre Faby</p>
         <h4>Hébergement</h4>
-        <p>Ce site est hébergé par Vercel Inc. (USA) via les serveurs européens (AWS Paris).</p>
+        <p>Ce site est hébergé par GitHub Pages (USA) via les serveurs de GitHub Inc.</p>
         <h4>Contact</h4>
         <p>Email : contact@vnr-energy.fr</p>
     </script>
     <script id="text-cookies" type="text/template">
         <h3>Gestion des Cookies</h3>
         <p>Notre site utilise uniquement des cookies strictement nécessaires au fonctionnement du panier d'achat et à la sécurisation des paiements.</p>
-        <p>Nous n'utilisons aucun cookie de ciblage publicitaire intrusif. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur, mais cela empêchera la validation de votre commande.</p>
+        <p>Nous n'utilisons aucun cookie de ciblage publicitaire intrusif. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur, mais cela empêchera la validation de votre panier.</p>
     </script>
 
     <!-- SCRIPTS INTERACTIFS -->
