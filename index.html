@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNR ENERGY | Boissons Énergisantes Intenses</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%2339FF14%22>V</text></svg>">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap');
+
+        :root {
+            --bg-dark: #050505;
+            --bg-card: #111111;
+            --neon-green: #39FF14;
+            --neon-red: #FF003C;
+            --text-light: #F4F4F4;
+            --text-muted: #888888;
+            --border: #222222;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* TOP BAR & HEADER */
+        .top-bar { background: var(--neon-green); color: var(--bg-dark); text-align: center; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; z-index: 1001; position: relative; }
+        header { position: sticky; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: var(--text-light); text-shadow: 0 0 10px var(--neon-green); letter-spacing: -2px; text-decoration: none; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: var(--text-light); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; transition: color 0.3s; }
+        nav a:hover { color: var(--neon-green); }
+        
+        /* HEADER CART BUTTON */
+        .cart-btn { background: transparent; border: 1px solid var(--neon-green); color: var(--text-light); padding: 0.5rem 1rem; font-weight: 900; font-style: italic; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; }
+        .cart-btn:hover { background: var(--neon-green); color: var(--bg-dark); }
+        .cart-count { background: var(--neon-red); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-style: normal; }
+
+        /* CART DRAWER */
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh; background-color: #0d0d0d; border-left: 1px solid var(--border); z-index: 2000; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); padding: 2rem; display: flex; flex-direction: column; }
+        .cart-drawer.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .close-cart { background: none; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; }
+        .cart-items { flex-grow: 1; margin: 2rem 0; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #1a1a1a; }
+        .checkout-btn { width: 100%; padding: 1rem; background: var(--neon-green); border: none; color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; }
+
+        /* MODALS (Légal, CGV, etc.) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid var(--border); width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; padding: 2rem; border-radius: 8px; position: relative; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; }
+        .modal-content h3 { color: var(--neon-green); margin-bottom: 1rem; font-style: italic; text-transform: uppercase; }
+        .modal-content h4 { margin: 1rem 0 0.5rem; color: #fff; font-size: 0.9rem; }
+        .modal-content p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.6; }
+
+        /* HERO & BUTTONS */
+        .hero { height: 85vh; display: flex; align-items: center; padding: 0 5%; background-image: linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.6) 50%, rgba(5,5,5,0.2) 100%), url('watermarked_img_2345650624342797978.jpg'); background-size: cover; background-position: center; }
+        .hero-content { max-width: 650px; }
+        .warning-tag { display: inline-block; background: rgba(255, 0, 60, 0.15); border: 1px solid var(--neon-red); color: var(--neon-red); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; font-style: italic; line-height: 0.95; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .hero h1 span { color: var(--neon-green); text-shadow: 0 0 20px rgba(57, 255, 20, 0.5); }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; color: #ccc; }
+        
+        .btn { display: inline-block; padding: 1rem 2.5rem; background-color: var(--neon-green); color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; text-decoration: none; font-size: 1.1rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%); }
+        .btn:hover { transform: scale(1.03) skewX(-3deg); box-shadow: 0 0 25px var(--neon-green); }
+        .btn-red { background-color: var(--neon-red); color: white; }
+        .btn-red:hover { box-shadow: 0 0 25px var(--neon-red); }
+
+        /* REASSURANCE */
+        .reassurance-bar { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 5%; text-align: center; }
+        .reassurance-item { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .reassurance-item span { color: var(--text-light); display: block; margin-bottom: 0.2rem; }
+
+        /* PRODUCTS */
+        .products { padding: 6rem 5%; max-width: 1300px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 900; font-style: italic; margin-bottom: 3rem; text-transform: uppercase; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.3s; }
+        .card.toxic:hover { border-color: var(--neon-green); }
+        .card.blood:hover { border-color: var(--neon-red); }
+        .card img { width: 100%; height: 280px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; }
+        .card h3 { font-size: 2rem; font-weight: 900; font-style: italic; margin-bottom: 0.5rem; }
+        .toxic h3 { color: var(--neon-green); }
+        .blood h3 { color: var(--neon-red); }
+        .card-desc { color: #aaa; font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        /* PRODUCT OPTIONS */
+        .purchase-options { background: #080808; border: 1px solid #1f1f1f; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; }
+        .option-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; }
+        .pack-buttons { display: flex; gap: 0.5rem; }
+        .pack-btn { flex: 1; padding: 0.5rem; background: #151515; border: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .pack-btn.active { background: var(--text-light); color: var(--bg-dark); border-color: var(--text-light); }
+        .sub-toggle { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; margin-top: 0.8rem; }
+        .sub-toggle input { accent-color: var(--neon-green); cursor: pointer;}
+        
+        .nutrition-trigger { background: none; border: none; color: var(--text-muted); font-size: 0.8rem; text-decoration: underline; cursor: pointer; font-weight: 700; margin-bottom: 1.5rem; }
+        .nutrition-content { display: none; background: #000; border: 1px solid #222; padding: 1rem; font-size: 0.75rem; margin-bottom: 1.5rem; }
+        .nutrition-content table { width: 100%; border-collapse: collapse; }
+        .nutrition-content td { padding: 4px 0; border-bottom: 1px solid #111; }
+
+        /* STORE LOCATOR */
+        .store-locator { padding: 5rem 5%; background-color: #080808; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+        .search-box { max-width: 500px; margin: 2rem auto; display: flex; gap: 0.5rem; }
+        .search-box input { flex: 1; padding: 0.8rem 1rem; background: #111; border: 1px solid var(--border); color: white; font-family: var(--font-main); outline: none; }
+        .search-box input:focus { border-color: var(--neon-green); }
+        .store-list { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto; text-align: left; }
+        .store-item { background: #111; border: 1px solid #222; padding: 1.5rem; width: 250px; border-radius: 6px; transition: border-color 0.3s; }
+        .store-item.hidden { display: none; }
+        .store-item h4 { color: var(--neon-green); margin-bottom: 0.5rem; }
+        .store-item p { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* ABOUT & NEWSLETTER */
+        .about { padding: 6rem 10%; background: var(--bg-dark); }
+        .about-container { max-width: 900px; margin: 0 auto; text-align: center; }
+        .creators-box { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 3rem; margin-top: 2rem; }
+        .creators-names { font-size: 1.8rem; font-weight: 900; font-style: italic; color: var(--text-light); text-transform: uppercase; border-bottom: 2px solid var(--neon-green); padding-bottom: 0.5rem; display: inline-block; margin-bottom: 1.5rem; }
+        .creators-desc { font-size: 1rem; color: #bbb; line-height: 1.8; text-align: justify; }
+
+        .newsletter { padding: 4rem 5%; background: linear-gradient(180deg, #0d0d0d 0%, #050505 100%); border-top: 1px solid var(--border); text-align: center; }
+        .newsletter-form { max-width: 500px; margin: 1.5rem auto 0; display: flex; gap: 0.5rem; }
+        .newsletter-form input { flex: 1; padding: 0.8rem 1rem; background: #111; border: 1px solid var(--border); color: white; outline: none; }
+        .newsletter-form input:focus { border-color: var(--neon-green); }
+        .newsletter-success { display: none; color: var(--neon-green); font-weight: 700; margin-top: 1rem; font-size: 0.9rem; }
+
+        /* FOOTER */
+        footer { background: #000; padding: 4rem 5% 2rem; border-top: 2px solid var(--neon-green); font-size: 0.8rem; color: var(--text-muted); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto 3rem; text-align: left; }
+        .footer-col h5 { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .footer-col ul { list-style: none; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.5rem; cursor: pointer; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--neon-green); }
+        .legal-warning { background: #0a0a0a; border: 1px solid #1f1f1f; padding: 1rem; max-width: 1200px; margin: 0 auto 2rem; font-size: 0.75rem; line-height: 1.4; }
+        .footer-bottom { text-align: center; border-top: 1px solid #111; padding-top: 2rem; }
+
+        /* MOBILE */
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+        @media (max-width: 768px) {
+            nav ul { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #0a0a0a; flex-direction: column; padding: 1.5rem; border-bottom: 1px solid var(--border); }
+            nav ul.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero { height: auto; padding: 8rem 5% 4rem; }
+            .newsletter-form, .search-box { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">⚡ LIVRAISON OFFERTE EN FRANCE DÈS 40€ D'ACHAT • EXPÉDIÉ SOUS 24H ⚡</div>
+
+    <header>
+        <a href="#" class="logo">VNR</a>
+        <button class="mobile-menu-btn" id="menuToggle">☰</button>
+        <nav>
+            <ul id="navLinks">
+                <li><a href="#hero">Accueil</a></li>
+                <li><a href="#products">La Gamme</a></li>
+                <li><a href="#stores">Points de Vente</a></li>
+                <li><a href="#about">À Propos</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="cart-btn" id="openCart">PANIER <span class="cart-count" id="cartBadge">0</span></button>
+        </div>
+    </header>
+
+    <!-- TIROIR DE PANIER -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>VOTRE PANIER</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartContainer">
+            <p id="emptyCartMsg" style="color: var(--text-muted); font-size: 0.9rem;">Votre panier est vide pour le moment.</p>
+        </div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: 700;">
+                <span>TOTAL :</span>
+                <span id="cartTotal">0.00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="alert('Redirection vers le portail de paiement sécurisé...')">VALIDER LA COMMANDE</button>
+        </div>
+    </div>
+
+    <!-- MODALES LÉGALES -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <span class="warning-tag">⚠️ Formule Haute Concentration</span>
+            <h1>Passe en <br><span>Mode VNR</span></h1>
+            <p>Le carburant officiel de ceux qui repoussent leurs limites. Énergie pure, acides aminés et extrait végétal intense. Sans concession.</p>
+            <a href="#products" class="btn">Découvrir la collection</a>
+        </div>
+    </section>
+
+    <div class="reassurance-bar">
+        <div class="reassurance-item"><span>🚀 LIVRAISON EXPRESS</span> Expédition sous 24h ouvrées</div>
+        <div class="reassurance-item"><span>🇫🇷 FABRICATION FRANÇAISE</span> Conditionné en Normandie</div>
+        <div class="reassurance-item"><span>🔒 PAIEMENT SÉCURISÉ</span> SSL, Visa, Mastercard, Apple Pay</div>
+    </div>
+
+    <section id="products" class="products">
+        <h2 class="section-title">Sélectionne ta dose</h2>
+        <div class="grid">
+            
+            <!-- PRODUIT 1 : TOXIC -->
+            <div class="card toxic" id="product-toxic">
+                <div>
+                    <img src="watermarked_img_3639316329615626104.jpg" alt="VNR Toxic">
+                    <h3>VNR TOXIC</h3>
+                    <p class="card-desc">Citron Vert Acidulé • Taurine • Guarana • Vitamines B3/B6/B12. La claque d'énergie instantanée pour les sessions intenses.</p>
+                    
+                    <div class="purchase-options">
+                        <div class="option-title">Choisir le format :</div>
+                        <div class="pack-buttons">
+                            <button class="pack-btn active" data-name="Pack 12" data-price="29.90" onclick="selectPack(this)">Pack 12 (2.49€/u)</button>
+                            <button class="pack-btn" data-name="Tray 24" data-price="52.90" onclick="selectPack(this)">Tray 24 (2.20€/u)</button>
+                        </div>
+                        <label class="sub-toggle">
+                            <input type="checkbox" onchange="updateAddButton('product-toxic')"> S'abonner & économiser 15% (Livraison mensuelle)
+                        </label>
+                    </div>
+
+                    <button class="nutrition-trigger" onclick="toggleNutrition('nutri-toxic')">+ Informations nutritionnelles & composition</button>
+                    <div class="nutrition-content" id="nutri-toxic">
+                        <table>
+                            <tr><td>Énergie</td><td>19 kcal / 100ml</td></tr>
+                            <tr><td>Caféine</td><td>32 mg / 100ml</td></tr>
+                            <tr><td>Taurine</td><td>400 mg / 100ml</td></tr>
+                            <tr><td>Glucides (Sucres)</td><td>4.2 g / 100ml</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <button class="btn add-to-cart-btn" style="width: 100%; font-size: 1rem;" onclick="addToCart('product-toxic', 'VNR TOXIC')">Ajouter - 29.90 €</button>
+            </div>
+
+            <!-- PRODUIT 2 : BLOODLINE -->
+            <div class="card blood" id="product-blood">
+                <div>
+                    <img src="watermarked_img_136497952852721932.jpg" alt="VNR Bloodline">
+                    <h3>VNR BLOODLINE</h3>
+                    <p class="card-desc">Cerise Noire • Piment doux • Caféine Pure. Développé pour la concentration maximale et le maintien de la vigilance prolongée.</p>
+                    
+                    <div class="purchase-options">
+                        <div class="option-title">Choisir le format :</div>
+                        <div class="pack-buttons">
+                            <button class="pack-btn active" data-name="Pack 12" data-price="29.90" onclick="selectPack(this)">Pack 12 (2.49€/u)</button>
+                            <button class="pack-btn" data-name="Tray 24" data-price="52.90" onclick="selectPack(this)">Tray 24 (2.20€/u)</button>
+                        </div>
+                        <label class="sub-toggle">
+                            <input type="checkbox" onchange="updateAddButton('product-blood')"> S'abonner & économiser 15% (Livraison mensuelle)
+                        </label>
+                    </div>
+
+                    <button class="nutrition-trigger" onclick="toggleNutrition('nutri-blood')">+ Informations nutritionnelles & composition</button>
+                    <div class="nutrition-content" id="nutri-blood">
+                        <table>
+                            <tr><td>Énergie</td><td>21 kcal / 100ml</td></tr>
+                            <tr><td>Caféine</td><td>32 mg / 100ml</td></tr>
+                            <tr><td>Extrait de Piment</td><td>15 mg / 100ml</td></tr>
+                            <tr><td>Glucides (Sucres)</td><td>4.5 g / 100ml</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <button class="btn btn-red add-to-cart-btn" style="width: 100%; font-size: 1rem;" onclick="addToCart('product-blood', 'VNR BLOODLINE')">Ajouter - 29.90 €</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STORE LOCATOR ACTIF -->
+    <section id="stores" class="store-locator">
+        <h2 class="section-title">Où trouver VNR ?</h2>
+        <p style="color: var(--text-muted);">Disponible chez nos partenaires réseau, salles de sport et épiceries sélectives.</p>
+        
+        <div class="search-box">
+            <input type="text" id="storeSearch" placeholder="Entrez votre ville (Caen, Mouen, Rouen...)" onkeyup="filterStores()">
+            <button class="btn" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;" onclick="filterStores()">Rechercher</button>
+        </div>
+
+        <div class="store-list" id="storeList">
+            <div class="store-item" data-city="caen">
+                <h4>Caen Centre</h4>
+                <p>Épicerie Nuit & Day<br>12 Rue Saint-Pierre, 14000 Caen</p>
+            </div>
+            <div class="store-item" data-city="mouen">
+                <h4>Basic-Fit Mouen</h4>
+                <p>Distributeur Officiel<br>Zone Industrielle, 14790 Mouen</p>
+            </div>
+            <div class="store-item" data-city="rouen">
+                <h4>Rouen Rive Gauche</h4>
+                <p>FitShop Partner<br>45 Avenue de Bretagne, 76100 Rouen</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2 class="section-title">À propos de <span style="color:var(--neon-green)">VNR</span></h2>
+            <div class="creators-box">
+                <div class="creators-names">Alexandre Faby & Romain Legarff</div>
+                <div class="creators-desc">
+                    <p>Derrière VNR, il y a une ambition simple : créer une marque de boisson énergisante qui nous ressemble, authentique et sans détour.</p><br>
+                    <p>Amis et passionnés de projets ambitieux, nous avons décidé d'associer nos compétences pour concevoir un univers fort et marquant. De la réflexion initiale à l'élaboration de la gamme, nous avons imaginé VNR comme une marque dynamique, moderne et tournée vers le dépassement de soi. Notre objectif est de proposer un produit de caractère, pensé pour accompagner au quotidien ceux qui ne s'arrêtent jamais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h3>REJOINDS LE SYNDICAT</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Recevez 10% de réduction sur votre première commande et soyez avertis des prochains drops.</p>
+        <form class="newsletter-form" id="nlForm" onsubmit="handleNewsletter(event)">
+            <input type="email" placeholder="Entrez votre e-mail..." required>
+            <button class="btn" type="submit" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">S'inscrire</button>
+        </form>
+        <div id="nlSuccess" class="newsletter-success">Bienvenue dans le Syndicat. Utilisez le code VNR10 lors de votre commande.</div>
+    </section>
+
+    <footer>
+        <div class="legal-warning">
+            <strong>⚠️ AVERTISSEMENT SANITAIRE :</strong> Teneur élevée en caféine (32 mg / 100 ml). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine. À consommer avec modération dans le cadre d'une alimentation variée et équilibrée.
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#products">Gamme VNR</a></li>
+                    <li><a href="#stores">Points de Vente</a></li>
+                    <li><a href="#about">À Propos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Information Légales</h5>
+                <ul>
+                    <li><a onclick="openModal('cgv')">Conditions Générales de Vente</a></li>
+                    <li><a onclick="openModal('privacy')">Politique de Confidentialité</a></li>
+                    <li><a onclick="openModal('mentions')">Mentions Légales</a></li>
+                    <li><a onclick="openModal('cookies')">Gestion des Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact & Société</h5>
+                <ul>
+                    <li><a href="mailto:contact@vnr-energy.fr">Support Client : contact@vnr-energy.fr</a></li>
+                    <li>VNR ENERGY SAS</li>
+                    <li>14000 Caen, Normandie - FRANCE</li>
+                    <li>SIREN : 987 654 321</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 VNR ENERGY DRINK. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- TEXTES LÉGAUX POUR LES MODALES -->
+    <script id="text-cgv" type="text/template">
+        <h3>Conditions Générales de Vente (CGV)</h3>
+        <p><strong>Article 1 - Objet :</strong> Les présentes CGV régissent les ventes par la société VNR ENERGY SAS de boissons énergisantes via le site web vnr-energy.fr.</p>
+        <p><strong>Article 2 - Prix :</strong> Les prix de nos produits sont indiqués en euros toutes taxes comprises (TVA et autres taxes applicables au jour de la commande), sauf indication contraire.</p>
+        <p><strong>Article 3 - Commandes & Abonnement :</strong> Toute commande vaut acceptation des prix et descriptions. L'option "Abonnement" engage le client sur des prélèvements mensuels avec une réduction de 15%. Cet abonnement est résiliable à tout moment depuis l'espace client.</p>
+        <p><strong>Article 4 - Rétractation :</strong> Conformément à la législation sur les denrées alimentaires périssables, le droit de rétractation ne s'applique pas aux canettes descellées.</p>
+    </script>
+    <script id="text-privacy" type="text/template">
+        <h3>Politique de Confidentialité</h3>
+        <p><strong>Collecte des données :</strong> Nous collectons les informations nécessaires à l'expédition de vos commandes (Nom, Prénom, Adresse, Email).</p>
+        <p><strong>Utilisation :</strong> Vos données ne sont en aucun cas revendues à des tiers. Elles servent uniquement à la logistique, au service client et à l'envoi de la newsletter (si vous y êtes inscrit).</p>
+        <p><strong>Vos droits :</strong> Conformément au RGPD, vous disposez d'un droit d'accès, de modification et de suppression de vos données en contactant privacy@vnr-energy.fr.</p>
+    </script>
+    <script id="text-mentions" type="text/template">
+        <h3>Mentions Légales</h3>
+        <h4>Éditeur du site</h4>
+        <p>VNR ENERGY SAS au capital de 10 000€</p>
+        <p>Siège social : 14000 Caen, France</p>
+        <p>SIREN : 987 654 321 - RCS Caen</p>
+        <p>Directeur de la publication : Alexandre Faby</p>
+        <h4>Hébergement</h4>
+        <p>Ce site est hébergé par Vercel Inc. (USA) via les serveurs européens (AWS Paris).</p>
+        <h4>Contact</h4>
+        <p>Email : contact@vnr-energy.fr</p>
+    </script>
+    <script id="text-cookies" type="text/template">
+        <h3>Gestion des Cookies</h3>
+        <p>Notre site utilise uniquement des cookies strictement nécessaires au fonctionnement du panier d'achat et à la sécurisation des paiements.</p>
+        <p>Nous n'utilisons aucun cookie de ciblage publicitaire intrusif. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur, mais cela empêchera la validation de votre commande.</p>
+    </script>
+
+    <!-- SCRIPTS INTERACTIFS -->
+    <script>
+        /* GESTION DU MENU MOBILE */
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        /* GESTION DU PANIER & TIROIR */
+        const cartDrawer = document.getElementById('cartDrawer');
+        document.getElementById('openCart').addEventListener('click', () => cartDrawer.classList.add('open'));
+        document.getElementById('closeCart').addEventListener('click', () => cartDrawer.classList.remove('open'));
+
+        let cartItems = [];
+
+        function toggleNutrition(id) {
+            const content = document.getElementById(id);
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+
+        /* LOGIQUE DE SÉLECTION DE PACKS ET MISE À JOUR DES PRIX */
+        function selectPack(btnElement) {
+            const parent = btnElement.closest('.purchase-options');
+            parent.querySelectorAll('.pack-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            
+            const cardId = btnElement.closest('.card').id;
+            updateAddButton(cardId);
+        }
+
+        function updateAddButton(cardId) {
+            const card = document.getElementById(cardId);
+            const activePack = card.querySelector('.pack-btn.active');
+            const isSub = card.querySelector('input[type="checkbox"]').checked;
+            let price = parseFloat(activePack.getAttribute('data-price'));
+            
+            if (isSub) {
+                price = price * 0.85; // Applique 15% de réduction
+            }
+            
+            const btn = card.querySelector('.add-to-cart-btn');
+            btn.textContent = `Ajouter - ${price.toFixed(2)} €`;
+        }
+
+        /* AJOUT AU PANIER */
+        function addToCart(cardId, productName) {
+            const card = document.getElementById(cardId);
+            const activePack = card.querySelector('.pack-btn.active');
+            const packName = activePack.getAttribute('data-name');
+            const isSub = card.querySelector('input[type="checkbox"]').checked;
+            
+            let price = parseFloat(activePack.getAttribute('data-price'));
+            let finalName = `${productName} (${packName})`;
+
+            if (isSub) {
+                price = price * 0.85;
+                finalName += " - Abonnement (-15%)";
+            }
+
+            const item = {
+                id: Date.now(),
+                name: finalName,
+                price: price
+            };
+            
+            cartItems.push(item);
+            renderCart();
+            cartDrawer.classList.add('open');
+        }
+
+        function removeFromCart(id) {
+            cartItems = cartItems.filter(item => item.id !== id);
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartContainer');
+            const emptyMsg = document.getElementById('emptyCartMsg');
+            const badge = document.getElementById('cartBadge');
+            const totalEl = document.getElementById('cartTotal');
+
+            // Nettoyage visuel (sauf le message vide qu'on va cacher/montrer)
+            container.innerHTML = '<p id="emptyCartMsg" style="color: var(--text-muted); font-size: 0.9rem; display: none;">Votre panier est vide pour le moment.</p>';
+
+            let total = 0;
+            badge.textContent = cartItems.length;
+
+            if (cartItems.length === 0) {
+                document.getElementById('emptyCartMsg').style.display = 'block';
+            } else {
+                cartItems.forEach(item => {
+                    total += item.price;
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <div>
+                            <strong style="font-size:0.9rem; display:block; max-width: 250px;">${item.name}</strong>
+                            <div style="font-size:0.8rem; color:#888;">${item.price.toFixed(2)} €</div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" style="background:none; border:none; color:var(--neon-red); cursor:pointer; font-size: 1.2rem;">✕</button>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+            totalEl.textContent = total.toFixed(2) + " €";
+        }
+
+        /* RECHERCHE STORE LOCATOR */
+        function filterStores() {
+            const query = document.getElementById('storeSearch').value.toLowerCase();
+            const stores = document.querySelectorAll('.store-item');
+            
+            stores.forEach(store => {
+                const city = store.getAttribute('data-city');
+                const text = store.innerText.toLowerCase();
+                if (city.includes(query) || text.includes(query)) {
+                    store.classList.remove('hidden');
+                } else {
+                    store.classList.add('hidden');
+                }
+            });
+        }
+
+        /* GESTION NEWSLETTER */
+        function handleNewsletter(e) {
+            e.preventDefault();
+            document.getElementById('nlForm').style.display = 'none';
+            document.getElementById('nlSuccess').style.display = 'block';
+        }
+
+        /* GESTION DES MODALES LÉGALES */
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalBody = document.getElementById('modalBody');
+
+        function openModal(type) {
+            const template = document.getElementById(`text-${type}`);
+            if(template) {
+                modalBody.innerHTML = template.innerHTML;
+                modalOverlay.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+        }
+
+        // Fermer la modale si on clique en dehors
+        modalOverlay.addEventListener('click', (e) => {
+            if(e.target === modalOverlay) closeModal();
+        });
+    </script>
+</body>
+</html>
