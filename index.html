@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VNR ENERGY | Clean Energy & Adaptogènes</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%2339FF14%22>V</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%2339FF14%22>⚡</text></svg>">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap');
@@ -31,26 +31,27 @@
         }
 
         /* TOP BAR & HEADER */
-        .top-bar { background: var(--neon-green); color: var(--bg-dark); text-align: center; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; z-index: 1001; position: relative; }
-        header { position: sticky; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .top-bar { background: var(--neon-green); color: var(--bg-dark); text-align: center; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+        header { position: sticky; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border); }
         .logo { font-size: 2.2rem; font-weight: 900; font-style: italic; color: var(--text-light); text-shadow: 0 0 10px var(--neon-green); letter-spacing: -2px; text-decoration: none; }
         nav ul { display: flex; list-style: none; gap: 2rem; }
         nav a { color: var(--text-light); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; transition: color 0.3s; }
         nav a:hover { color: var(--neon-green); }
         
         /* HEADER CART BUTTON */
-        .cart-btn { background: transparent; border: 1px solid var(--neon-green); color: var(--text-light); padding: 0.5rem 1rem; font-weight: 900; font-style: italic; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; }
+        .cart-btn { background: transparent; border: 1px solid var(--neon-green); color: var(--text-light); padding: 0.5rem 1rem; font-weight: 900; font-style: italic; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; }
         .cart-btn:hover { background: var(--neon-green); color: var(--bg-dark); }
         .cart-count { background: var(--neon-red); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-style: normal; }
 
         /* CART DRAWER */
-        .cart-drawer { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh; background-color: #0d0d0d; border-left: 1px solid var(--border); z-index: 2000; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); padding: 2rem; display: flex; flex-direction: column; }
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh; background-color: #0d0d0d; border-left: 1px solid var(--border); z-index: 2000; transition: right 0.3s ease; padding: 2rem; display: flex; flex-direction: column; }
         .cart-drawer.open { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
         .close-cart { background: none; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; }
         .cart-items { flex-grow: 1; margin: 2rem 0; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #1a1a1a; }
-        .checkout-btn { width: 100%; padding: 1rem; background: var(--neon-green); border: none; color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; }
+        .checkout-btn { width: 100%; padding: 1rem; background: var(--neon-green); border: none; color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+        .checkout-btn:hover { background: #2ce635; }
 
         /* MODALS */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
@@ -62,20 +63,20 @@
         .modal-content p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.6; }
 
         /* HERO & BUTTONS */
-        .hero { height: 85vh; display: flex; align-items: center; padding: 0 5%; background-image: linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.6) 50%, rgba(5,5,5,0.2) 100%), url('Gemini_Generated_Image__2.jpg'); background-size: cover; background-position: center; }
+        .hero { height: 85vh; display: flex; align-items: center; padding: 0 5%; background-image: linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.6) 50%, rgba(5,5,5,0.2) 100%), url('vnr-hero-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
         .hero-content { max-width: 650px; }
-        .warning-tag { display: inline-block; background: rgba(57, 255, 20, 0.15); border: 1px solid var(--neon-green); color: var(--neon-green); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .warning-tag { display: inline-block; background: rgba(57, 255, 20, 0.15); border: 1px solid var(--neon-green); color: var(--neon-green); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
         .hero h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; font-style: italic; line-height: 0.95; margin-bottom: 1.5rem; text-transform: uppercase; }
         .hero h1 span { color: var(--neon-green); text-shadow: 0 0 20px rgba(57, 255, 20, 0.5); }
         .hero p { font-size: 1.1rem; margin-bottom: 2rem; color: #ccc; }
         
-        .btn { display: inline-block; padding: 1rem 2.5rem; background-color: var(--neon-green); color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; text-decoration: none; font-size: 1.1rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; background-color: var(--neon-green); color: var(--bg-dark); font-weight: 900; font-style: italic; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s; border-radius: 4px; }
         .btn:hover { transform: scale(1.03) skewX(-3deg); box-shadow: 0 0 25px var(--neon-green); }
         .btn-red { background-color: var(--neon-red); color: white; }
         .btn-red:hover { box-shadow: 0 0 25px var(--neon-red); }
 
         /* REASSURANCE */
-        .reassurance-bar { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 5%; text-align: center; }
+        .reassurance-bar { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2rem 5%; }
         .reassurance-item { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .reassurance-item span { color: var(--text-light); display: block; margin-bottom: 0.2rem; }
 
@@ -108,7 +109,7 @@
         .products { padding: 6rem 5%; max-width: 1300px; margin: 0 auto; }
         .section-title { font-size: 2.5rem; font-weight: 900; font-style: italic; margin-bottom: 1rem; text-transform: uppercase; text-align: center; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 3rem; }
-        .card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.3s; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s; }
         .card.toxic:hover { border-color: var(--neon-green); }
         .card.blood:hover { border-color: var(--neon-red); }
         .card img { width: 100%; height: 280px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; }
@@ -121,7 +122,7 @@
         .purchase-options { background: #080808; border: 1px solid #1f1f1f; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; }
         .option-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; }
         .pack-buttons { display: flex; gap: 0.5rem; }
-        .pack-btn { flex: 1; padding: 0.5rem; background: #151515; border: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .pack-btn { flex: 1; padding: 0.5rem; background: #151515; border: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; border-radius: 3px; }
         .pack-btn.active { background: var(--text-light); color: var(--bg-dark); border-color: var(--text-light); }
         .sub-toggle { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; margin-top: 0.8rem; }
         .sub-toggle input { accent-color: var(--neon-green); cursor: pointer;}
@@ -134,7 +135,7 @@
         /* STORE LOCATOR */
         .store-locator { padding: 5rem 5%; background-color: #080808; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
         .search-box { max-width: 500px; margin: 2rem auto; display: flex; gap: 0.5rem; }
-        .search-box input { flex: 1; padding: 0.8rem 1rem; background: #111; border: 1px solid var(--border); color: white; font-family: var(--font-main); outline: none; }
+        .search-box input { flex: 1; padding: 0.8rem 1rem; background: #111; border: 1px solid var(--border); color: white; font-family: var(--font-main); outline: none; border-radius: 4px; }
         .search-box input:focus { border-color: var(--neon-green); }
         .store-list { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto; text-align: left; }
         .store-item { background: #111; border: 1px solid #222; padding: 1.5rem; width: 250px; border-radius: 6px; transition: border-color 0.3s; }
@@ -146,17 +147,17 @@
         .about { padding: 6rem 10%; background: var(--bg-dark); }
         .about-container { max-width: 900px; margin: 0 auto; text-align: center; }
         .creators-box { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 3rem; margin-top: 2rem; }
-        .creators-names { font-size: 1.8rem; font-weight: 900; font-style: italic; color: var(--text-light); text-transform: uppercase; border-bottom: 2px solid var(--neon-green); padding-bottom: 0.5rem; display: inline-block; margin-bottom: 1.5rem; }
+        .creators-names { font-size: 1.8rem; font-weight: 900; font-style: italic; color: var(--text-light); text-transform: uppercase; border-bottom: 2px solid var(--neon-green); padding-bottom: 1rem; }
         .creators-desc { font-size: 1rem; color: #bbb; line-height: 1.8; text-align: justify; margin-bottom: 2rem; }
         
         /* CREATORS PHOTO */
         .creators-photo { text-align: center; margin-top: 2rem; border-top: 1px solid #222; padding-top: 2.5rem; }
-        .team-img { width: 100%; max-width: 600px; height: auto; border-radius: 6px; border: 1px solid var(--border); filter: grayscale(30%); transition: filter 0.4s ease, border-color 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .team-img { width: 100%; max-width: 600px; height: auto; border-radius: 6px; border: 1px solid var(--border); filter: grayscale(30%); transition: filter 0.4s ease, border-color 0.4s ease; }
         .team-img:hover { filter: grayscale(0%); border-color: var(--neon-green); }
 
         .newsletter { padding: 4rem 5%; background: linear-gradient(180deg, #0d0d0d 0%, #050505 100%); border-top: 1px solid var(--border); text-align: center; }
         .newsletter-form { max-width: 500px; margin: 1.5rem auto 0; display: flex; gap: 0.5rem; }
-        .newsletter-form input { flex: 1; padding: 0.8rem 1rem; background: #111; border: 1px solid var(--border); color: white; outline: none; }
+        .newsletter-form input { flex: 1; padding: 0.8rem 1rem; background: #111; border: 1px solid var(--border); color: white; outline: none; border-radius: 4px; }
         .newsletter-form input:focus { border-color: var(--neon-green); }
         .newsletter-success { display: none; color: var(--neon-green); font-weight: 700; margin-top: 1rem; font-size: 0.9rem; }
 
@@ -251,20 +252,20 @@
             <div class="section-subtitle">Science & Botanique</div>
             <h2 class="section-title">C'est quoi une plante adaptogène ?</h2>
             <p class="adaptogens-intro">
-                Une plante adaptogène est un extrait naturel rare capable d'augmenter la capacité de ton corps à **s'adapter au stress** (physique, mental ou environnemental). Contrairement à la caféine classique qui force le système nerveux et provoque une grosse chute d'énergie, les adaptogènes lissent le pic d'énergie et renforcent l'organisme en profondeur.
+                Une plante adaptogène est un extrait naturel rare capable d'augmenter la capacité de ton corps à <strong>s'adapter au stress</strong> (physique, mental ou environnemental). Contrairement aux stimulants classiques, elle régule et équilibre sans crash ni dépendance.
             </p>
 
             <div class="adaptogens-grid">
                 <div class="adaptogen-card">
                     <h3>Rhodiola Rosea</h3>
                     <span class="latin">Booster de résistance physique</span>
-                    <p>Utilisée depuis des siècles dans le Grand Nord, la Rhodiola améliore l'endurance, réduit la fatigue musculaire liée à l'effort intense et aide à maintenir un niveau de performance optimal sous pression.</p>
+                    <p>Utilisée depuis des siècles dans le Grand Nord, la Rhodiola améliore l'endurance, réduit la fatigue musculaire liée à l'effort intense et aide à maintenir un niveau d'énergie stable sur 8+ heures.</p>
                 </div>
 
                 <div class="adaptogen-card red-accent">
                     <h3>Lion's Mane</h3>
                     <span class="latin">Hericium erinaceus • Nootrope naturel</span>
-                    <p>Ce champignon adaptogène d'exception est reconnu pour stimuler la clarté mentale, soutenir les fonctions cognitives et favoriser une concentration profonde (« Deep Work ») sans excitation excessive.</p>
+                    <p>Ce champignon adaptogène d'exception est reconnu pour stimuler la clarté mentale, soutenir les fonctions cognitives et favoriser une concentration profonde (« Deep Work Mode »).</p>
                 </div>
             </div>
 
@@ -299,9 +300,9 @@
             <!-- PRODUIT 1 : TOXIC -->
             <div class="card toxic" id="product-toxic">
                 <div>
-                    <img src="Gemini_Generated_Image_ (1)_2.jpg" alt="VNR Toxic">
+                    <img src="vnr-toxic-canette.jpg" alt="VNR Toxic">
                     <h3>VNR TOXIC</h3>
-                    <p class="card-desc">Citron Vert Acidulé • Caféine Naturelle • Rhodiola Rosea • BCAA. Pensée pour l'endurance physique, le terrain et la résistance à l'effort intense.</p>
+                    <p class="card-desc">Citron Vert Acidulé • Caféine Naturelle • Rhodiola Rosea • BCAA. Pensée pour l'endurance physique, le terrain et la résistance à l'effort intensif.</p>
                     
                     <div class="purchase-options">
                         <div class="option-title">Choisir le format :</div>
@@ -330,7 +331,7 @@
             <!-- PRODUIT 2 : BLOODLINE -->
             <div class="card blood" id="product-blood">
                 <div>
-                    <img src="Gemini_Generated_Image_ (2)_2.jpg" alt="VNR Bloodline">
+                    <img src="vnr-bloodline-canette.jpg" alt="VNR Bloodline">
                     <h3>VNR BLOODLINE</h3>
                     <p class="card-desc">Cerise Noire • Caféine douce • Lion's Mane • L-Théanine. Dédiée au deep work, à la clarté mentale et aux sessions de concentration prolongées.</p>
                     
@@ -395,12 +396,12 @@
                 <div class="creators-names">Alexandre Faby & Romain Le Garff</div>
                 <div class="creators-desc">
                     <p>Derrière VNR, il y a une ambition simple : créer une marque de boisson énergisante fonctionnelle qui nous ressemble, authentique et sans détour.</p><br>
-                    <p>Amis et passionnés de projets ambitieux, nous avons décidé d'associer nos compétences pour concevoir un univers fort et marquant. De la réflexion initiale sur les formules aux adaptogènes jusqu'à l'élaboration de la gamme, nous avons imaginé VNR comme une marque dynamique, moderne et tournée vers le dépassement de soi, sans compromis sur la santé ni sur le style.</p>
+                    <p>Amis et passionnés de projets ambitieux, nous avons décidé d'associer nos compétences pour concevoir un univers fort et marquant. De la réflexion initiale sur les formules jusqu'à la vision du design, chaque détail a été pensé pour incarner cette énergie brute et canalisée.</p>
                 </div>
                 
                 <!-- SECTION PHOTO DES FONDATEURS -->
                 <div class="creators-photo">
-                    <img src="Deux entrepreneurs, une même vision_cleanup_2.jpg" alt="Alexandre Faby et Romain Le Garff, fondateurs de VNR" class="team-img">
+                    <img src="vnr-fondateurs-alexandre-romain.jpg" alt="Alexandre Faby et Romain Le Garff, fondateurs de VNR" class="team-img">
                 </div>
             </div>
         </div>
@@ -420,7 +421,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="legal-warning">
-            <strong>⚠️ AVERTISSEMENT SANITAIRE :</strong> Teneur élevée en caféine (32 mg / 100 ml) associée à des extraits de plantes adaptogènes. Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles aux stimulants. À consommer avec modération dans le cadre d'un mode de vie sain.
+            <strong>⚠️ AVERTISSEMENT SANITAIRE :</strong> Teneur élevée en caféine (32 mg / 100 ml) associée à des extraits de plantes adaptogènes. Déconseillé aux enfants, aux femmes enceintes et aux personnes sensibles à la caféine. Consultez un professionnel de santé avant consommation en cas de traitement médical.
         </div>
 
         <div class="footer-grid">
@@ -464,7 +465,7 @@
         <h3>Conditions Générales de Vente (CGV)</h3>
         <p><strong>Article 1 - Objet :</strong> Les présentes CGV régissent les ventes par la société VNR ENERGY SAS de boissons énergisantes adaptogènes via le site web vnr-energy.fr.</p>
         <p><strong>Article 2 - Prix :</strong> Les prix de nos produits sont indiqués en euros toutes taxes comprises (TVA et autres taxes applicables au jour de la commande).</p>
-        <p><strong>Article 3 - Commandes & Abonnement :</strong> Toute commande vaut acceptation des prix et descriptions. L'option « Abonnement » engage le client sur des prélèvements mensuels avec une réduction de 15%. Cet abonnement est résiliable à tout moment.</p>
+        <p><strong>Article 3 - Commandes & Abonnement :</strong> Toute commande vaut acceptation des prix et descriptions. L'option « Abonnement » engage le client sur des prélèvements mensuels jusqu'à résiliation écrite.</p>
         <p><strong>Article 4 - Rétractation :</strong> Conformément à la législation sur les denrées alimentaires, le droit de rétractation ne s'applique pas aux canettes descellées.</p>
     </script>
     <script id="text-privacy" type="text/template">
@@ -479,7 +480,7 @@
         <p>VNR ENERGY SAS au capital de 10 000€</p>
         <p>Siège social : 14000 Caen, France</p>
         <p>SIREN : 987 654 321 - RCS Caen</p>
-        <p>Directeurs de la publication : Alexandre Faby & Romain Le  Garff</p>
+        <p>Directeurs de la publication : Alexandre Faby & Romain Le Garff</p>
         <h4>Hébergement</h4>
         <p>Ce site est hébergé par Vercel Inc. (USA) via les serveurs européens (AWS Paris).</p>
         <h4>Contact</h4>
